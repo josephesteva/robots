@@ -1,9 +1,9 @@
 const client = require('./client.cjs');
-const { createRobot } = require('./robots.js');
+const { createRobot } = require('./robots.cjs');
 const { createTask } = require('./tasks.cjs');
-const { createCustomer } = require('./customers.js');
-const { createRobotTask } = require ('./robotsTasks.js');
-const {createRobotCustomer} = require('./robotsCustomers.js');
+const { createCustomer } = require('./customers.cjs');
+const { createRobotTask } = require('./robotsTasks.cjs');
+const { createRobotCustomer } = require('./robotsCustomers.cjs');
 
 const dropTables = async () => {
 	try {
@@ -69,7 +69,7 @@ const syncAndSeed = async () => {
 
 	await createTables();
 	console.log('Tables Created');
-	
+
 	const laundrybot = await createRobot('Laundrybot', '3000', 'RoboCorp', 'http://placekitten.com/200/300', 12, true, '2020-12-12');
 	const cookotron = await createRobot('Cookotron', '4000', 'RoboCorp', 'http://placekitten.com/200/300', 12, false, '2023-12-12');
 	const cookotronx = await createRobot('Cookotron', 'X7000', 'RoboCorp', 'http://placekitten.com/200/300', 24, true, '2023-12-12');
@@ -77,14 +77,14 @@ const syncAndSeed = async () => {
 	const gardendroid = await createRobot('Gardendroid', 'Z17', 'BotBuilder', 'http://placekitten.com/200/300', 18, false, '2023-12-12');
 	const mrHandy = await createRobot('MrHandy', '9001', 'Nuketech', 'http://placekitten.com/200/300', 9001, true, '2076-01-01');
 	console.log('Robots Created');
-	
+
 	const foldClothes = await createTask('Fold Clothes');
 	const makeDinner = await createTask('Cook Meal');
 	const cleanKitchen = await createTask('Clean Kitchen');
 	const vacuum = await createTask('Vacuum');
 	const trimHedges = await createTask('Trim Hedges');
 	const wastelandScavenge = await createTask('Scavenge the Wasteland');
-	console.log('Tasks Created'); 
+	console.log('Tasks Created');
 
 	await createRobotTask(laundrybot.id, foldClothes.id);
 	await createRobotTask(cookotron.id, makeDinner.id);
@@ -101,13 +101,13 @@ const syncAndSeed = async () => {
 	await createRobotTask(mrHandy.id, trimHedges.id);
 	await createRobotTask(mrHandy.id, wastelandScavenge.id);
 	console.log("Robots Linked to Tasks")
-	
+
 	const johnSmith = await createCustomer('John Smith', 'john.smith@mail.com');
 	const janeDoe = await createCustomer('Jane Doe', 'jane.doe@mail.com');
 	const barryWinger = await createCustomer('Barry winger', 'barry.winger@mail.com');
 	const billGuy = await createCustomer('Bill Guy', 'bill.guy@mail.com');
-	const loneWanderer= await createCustomer('Mr. Lone Wanderer', 'gone.fishing@apocalypse.com');
-	console.log('Customers Created'); 
+	const loneWanderer = await createCustomer('Mr. Lone Wanderer', 'gone.fishing@apocalypse.com');
+	console.log('Customers Created');
 
 	await createRobotCustomer(laundrybot.id, johnSmith.id);
 	await createRobotCustomer(cookotron.id, barryWinger.id);

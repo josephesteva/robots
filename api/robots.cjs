@@ -13,6 +13,7 @@ router.get('/:id', async (req, res) => {
 	res.send(robot);
 })
 
+//todo
 router.get('/task/:id', async (req, res) => {
 	const robots = await getRobotsbyTask(req.params.id);
 	res.send(robots);

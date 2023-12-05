@@ -24,4 +24,20 @@ const getAllTasks = async () => {
 	}
 }
 
-module.exports = { createTask, getAllTasks };
+// todo
+const getTasksByRobot = async (robotId) => {
+	try {
+		const { rows } = await client.query(`
+			SELECT *
+			FROM tasks
+			JOIN robots_tasks
+			ON tasks.id = robots_tasks.task_id
+			WHERE robots_tasks.robot_id = ${robotId};
+		`)
+		return rows;
+	} catch(err) {
+		console.log(err);
+	}
+}
+
+module.exports = { createTask, getAllTasks, getTasksByRobot};
