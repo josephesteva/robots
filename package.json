@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
 		"start:dev": "nodemon server.cjs",
-		"seed:dev": "nodemon ./db/seed.js",
+		"seed:dev": "nodemon ./db/seed.cjs",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

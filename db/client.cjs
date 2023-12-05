@@ -1,4 +1,5 @@
 const {Client} = require('pg');
-const client = new Client('postgres://localhost:5432/robot_shop');
+const connection = process.env.DATABASE_URL || 'postgres://localhost:5432/robot_shop';
+const client = new Client(connection);
 
 module.exports = client;

@@ -10,5 +10,5 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', require('./api/index.cjs'));
 
-PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
