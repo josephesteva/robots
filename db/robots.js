@@ -13,4 +13,4 @@ const createRobot = async (name, model, company, imgUrl, warrantyMonths, isChild
 	}
 }
 
-module.exports = { createRobot }
+module.exports = { createRobot };
