@@ -13,4 +13,15 @@ const createTask = async (name) => {
 	}
 }
 
-module.exports = { createTask };
+const getAllTasks = async () => {
+	try {
+		const {rows} = await client.query(`
+		SELECT * FROM tasks;
+		`);
+		return rows;
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+module.exports = { createTask, getAllTasks };

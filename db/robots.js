@@ -13,4 +13,41 @@ const createRobot = async (name, model, company, imgUrl, warrantyMonths, isChild
 	}
 }
 
-module.exports = { createRobot };
+const getAllRobots = async () => {
+	try {
+		const { rows } = await client.query(`
+		SELECT * FROM robots;
+		`);
+		return rows;
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+const getSingleRobot = async (robotId) => {
+	try {
+		const {rows} = await client.query(`
+		SELECT * FROM robots
+		WHERE robots.id = ${robotId};
+		`);
+		return rows;
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+const getRobotsbyTask = async (taskId) => {
+	try {
+		const {rows} = await client.query(`
+		SELECT * FROM robots
+		JOIN robots_tasks
+		ON robots.id = robots_tasks.robot_id
+		WHERE robots_tasks.task_id = ${taskId};
+		`)
+		return rows;
+	} catch(err) {
+		console.log(err);
+	}
+}
+
+module.exports = { createRobot, getAllRobots, getSingleRobot, getRobotsbyTask };
